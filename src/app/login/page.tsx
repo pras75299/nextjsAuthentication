@@ -1,16 +1,43 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
-import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
+  const router = useRouter();
   const [user, setUser] = useState({
     email: "",
     password: "",
+    username: "",
   });
 
-  const onLogin = async () => {};
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const onLogin = async (e: any) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const response = await axios.post("/api/users/login", user);
+      console.log("Login Success", response.data);
+      router.push("/profile");
+    } catch (error: any) {
+      console.log("Login failed", error.message);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (user.email.length > 0 && user.password.length > 0) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }
+  }, [user]);
 
   return (
     <>
@@ -19,7 +46,7 @@ const LoginPage = () => {
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Login
+                {loading ? "Processing.." : "Login"}
               </h1>
               <form className="space-y-4 md:space-y-6" action="#">
                 <div>
@@ -68,7 +95,7 @@ const LoginPage = () => {
                   onClick={onLogin}
                   className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
-                  Login
+                  {buttonDisabled ? "D Login" : "Login"}
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Haven't Register yet?{" "}
