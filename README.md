@@ -1,8 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next.js, MongoDB, bcrypt, JWT, and Mailtrap Project
+
+This project is built using Next.js and integrates MongoDB for database operations, bcrypt for password hashing, JWT for authentication, and Mailtrap to simulate email sending in a development environment.
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +22,33 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the application in action.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- User Authentication: Sign up, sign in, and sign out functionality using JWT.
+- Password Hashing: Secure password hashing using bcrypt.
+- Email Simulation: Email simulation for development purposes with Mailtrap.
+- Database Integration: MongoDB integration for storing and managing user data.
 
-## Learn More
+## Configuration
 
-To learn more about Next.js, take a look at the following resources:
+Ensure you have the following environment variables configured in your `.env` file:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `MONGODB_URI`: Your MongoDB connection string.
+- `DOMAIN`: Your localhost url connection string and in production update the url with production url.
+- `JWT_SECRET`: A secret key for JWT signing and verification.
+- `MAILTRAP_USER`: Your Mailtrap username.
+- `MAILTRAP_PASS`: Your Mailtrap password.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+Contributions are welcome! Please feel free to submit a pull request or open an issue for any bugs or feature requests.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For deployment instructions and best practices, refer to the [Next.js deployment documentation](https://nextjs.org/docs/deployment).
+
+## License
+
+This project is open-sourced under the MIT license.
