@@ -5,19 +5,17 @@ import { connect } from '@/dbConfig/dbConfig';
 
 connect();
 
-export async function GET(request:NextRequest){
+export async function GET(request: NextRequest) {
     try {
-       const userId = await getDataFromToken(request);
-       const user = await User.findById({_id: userId}).select("-password -isAdmin");
-       return NextResponse.json(
-        {
+        const userId = await getDataFromToken(request);
+        const user = await User.findById(userId).select("-password -isAdmin");
+        return NextResponse.json({
             message: "User Found",
             data: user
-        })
-    } catch (error:any) {
-        throw NextResponse.json(
-            {error: error.message},
-            {status: 400}
-        )
+        });
+    } catch (error: unknown) {
+        // Ensure error handling accounts for different types of errors
+        const errorMessage = (error instanceof Error) ? error.message : 'An unknown error occurred';
+        return NextResponse.json({ error: errorMessage }, { status: 400 });
     }
 }
