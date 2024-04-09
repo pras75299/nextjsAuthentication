@@ -11,16 +11,16 @@ export default function ProfilePage() {
     try {
       const response = await axios.get("/api/users/logout");
       toast.success("Logout Successful");
-      console.log("Signup Success", response.data);
+      //console.log("Signup Success", response.data);
       router.push("/login");
     } catch (error: any) {
-      console.log(error.message);
+      //console.log(error.message);
     }
   };
 
   const getUserData = async () => {
     const res = await axios.get("/api/users/me");
-    console.log(res.data);
+    //console.log(res.data);
     setData(res.data.data._id);
   };
   return (

@@ -9,7 +9,7 @@ export async function POST(request:NextRequest) {
     try {
         const reqBody = await request.json();
         const {email, password} = reqBody;
-        console.log(reqBody);
+        //console.log(reqBody);
 
         // check if user already exists
         const user = await User.findOne({email});
