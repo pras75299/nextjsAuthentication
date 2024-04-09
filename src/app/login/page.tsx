@@ -90,13 +90,24 @@ const LoginPage = () => {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  onClick={onLogin}
-                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  {buttonDisabled ? "D Login" : "Login"}
-                </button>
+                {buttonDisabled ? (
+                  <button
+                    type="submit"
+                    disabled
+                    className="w-full bg-blue-400 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed"
+                  >
+                    Login
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    onClick={onLogin}
+                    className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Login
+                  </button>
+                )}
+
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   {"Haven't registered yet?"}
                   <Link

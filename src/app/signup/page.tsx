@@ -114,12 +114,24 @@ export default function SignupPage() {
                   />
                 </div>
 
-                <button
-                  onClick={onSignup}
-                  className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  {buttonDisabled ? "D Sign Up" : "Sign Up"}
-                </button>
+                {buttonDisabled ? (
+                  <button
+                    type="submit"
+                    disabled
+                    className="w-full bg-blue-400 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed"
+                  >
+                    Sign Up
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    onClick={onSignup}
+                    className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Sign Up
+                  </button>
+                )}
+
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Already have an account?{" "}
                   <Link
