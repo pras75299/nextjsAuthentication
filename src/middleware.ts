@@ -4,7 +4,7 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   // Check if the path is public
-  const isPublicPath = path === '/login' || path === '/signup';
+  const isPublicPath = path === '/login' || path === '/signup' || path === '/verifyemail';
   // Check if the path starts with /profile, indicating it's a profile page or a sub-page
   const isProfilePath = path.startsWith('/profile');
 
