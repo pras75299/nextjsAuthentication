@@ -116,6 +116,13 @@ const LoginPage = () => {
                   >
                     Signup Here
                   </Link>
+                  {" Forget Password? "}
+                  <Link
+                    href="/forgetpassword"
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >
+                    Click here
+                  </Link>
                 </p>
               </form>
             </div>
