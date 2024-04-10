@@ -109,7 +109,7 @@ const LoginPage = () => {
                 )}
 
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  {"Haven't registered yet?"}
+                  {"Haven't registered yet? "}
                   <Link
                     href="/signup"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
