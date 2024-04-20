@@ -1,6 +1,5 @@
 import { connect } from "@/dbConfig/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
-
 import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
 
@@ -9,7 +8,6 @@ connect();
 export async function POST(request: NextRequest) {
   const reqBody = await request.json();
   const { password, token } = reqBody;
-  console.log(token);
 
   try {
     const user = await User.findOne({
@@ -18,9 +16,8 @@ export async function POST(request: NextRequest) {
     });
 
     if (!user) {
-      return NextResponse.json({ error: "Invalid token" });
+      return NextResponse.json({ error: "Invalid token" }, { status: 400 });
     }
-    console.log(user);
 
     // hash password
     const hashedPassword = await bcryptjs.hash(password, 10);
@@ -28,13 +25,15 @@ export async function POST(request: NextRequest) {
     user.password = hashedPassword;
     user.forgotPasswordToken = undefined;
     user.forgotPasswordTokenExpiry = undefined;
-    user.save();
+
+    await user.save();  // Ensure changes are saved and handle any errors
 
     return NextResponse.json({
       message: "Password reset successfully",
-      success: true,
+      success: true
     });
-  } catch (error: any) {
+  } catch (error:any) {
+    console.error("Reset password error:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
